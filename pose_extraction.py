@@ -32,8 +32,8 @@ options = vision.PoseLandmarkerOptions(
     running_mode=vision.RunningMode.IMAGE  # Change to VIDEO or LIVE_STREAM if needed
 )
 
-print_label_counts('pose_home_dataset.csv', "label")
-exit()
+# print_label_counts('pose_home_dataset.csv', "label")
+# exit()
 
 def downsample_video_by_time(cap: cv2.VideoCapture, intervals_sec=(0.066, 0.100, 0.180)):
     """
@@ -95,8 +95,6 @@ def normalize_pose_landmarks(landmarks):
     # Flatten to a single list: [x0, y0, x1, y1, ... x32, y32]
     return coords.flatten().tolist()
 
-if True:
-    exit()
 mode = 'r'
 # MAIN LOOP
 with open('pose_home_dataset.csv', 'w', newline='') as output_file:
