@@ -26,7 +26,7 @@ def load_inference_pipeline(model_path: str,
         tuple: (Loaded PoseResNet, Loaded MahalanobisDetector)
     """
     model = AdvancedPoseResNet(input_channels=66, num_classes=num_classes, hidden_dim=256)
-    model.load_state_dict(torch.load(model_path, map_size=device))
+    model.load_state_dict(torch.load(model_path))
     model.to(device)
     model.eval()
 

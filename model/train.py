@@ -14,7 +14,6 @@ from ood_detector import MahalanobisDetector
 from model_exporter import ModelExporter
 
 
-
 def prepare_windowed_data(df, window_size=10, step=1):
     X, y, vid  = [], [], []
     mapping = dict()
@@ -164,7 +163,7 @@ def train_pose_classifier(features: np.ndarray,
             for batch_x, batch_y in val_loader:
                 batch_x, batch_y = batch_x.to(device), batch_y.to(device)
                 outputs = model(batch_x)
-                val_loss += criterion(outputs, batch_y).item()
+                val_loss += criterion(outputs[0], batch_y).item()
 
         avg_val_loss = val_loss / len(val_loader)
         print(f"Epoch: {epoch + 1} | Loss: {avg_val_loss:.4f} Train Loss: {train_loss:.4f}")
