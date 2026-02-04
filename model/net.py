@@ -1,6 +1,9 @@
+from typing import Tuple, Any
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from torch import Tensor
 
 
 class SqueezeExciteBlock(nn.Module):
@@ -123,9 +126,9 @@ class AdvancedPoseResNet(nn.Module):
         x = self.avg_pool(x).view(x.size(0), -1)
         return self.fc_embedding(x)
 
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x: torch.Tensor) -> tuple[Any, Tensor]:
         """
         Returns classification logits.
         """
         feat = self.forward_features(x)
-        return self.classifier(feat)
+        return self.classifier(feat), feat

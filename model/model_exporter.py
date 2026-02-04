@@ -39,8 +39,8 @@ class ModelExporter:
             dummy_input,
             onnx_path,
             input_names=['input'],
-            output_names=['output'],
-            dynamic_axes={'input': {0: 'batch_size'}, 'output': {0: 'batch_size'}},
+            output_names=['logits', 'embeddings'],
+            dynamic_axes={'input': {0: 'batch_size'}, 'logits': {0: 'batch_size'},'embeddings': {0: 'batch_size'}},
             opset_version=12
         )
 
@@ -70,10 +70,6 @@ class ModelExporter:
         }
         with open(output_path, "w") as f:
             json.dump(data, f)
-
-
-import torch
-
 
 def run_export():
     """
